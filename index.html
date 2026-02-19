@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shishir Acharya</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Font: Poppins clean & modern -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fbfdff;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* header / navigation */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #0a0f1c;
+    }
+
+    .logo span {
+      color: #2563eb;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #2d3a4b;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #2563eb;
+    }
+
+    /* hero / about section */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      padding: 3rem 0 5rem 0;
+    }
+
+    .hero-content h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: #0f172a;
+    }
+
+    .hero-content h1 i {
+      color: #2563eb;
+      font-style: normal;
+    }
+
+    .hero-subtitle {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #2563eb;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-description {
+      color: #4b5563;
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      max-width: 90%;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #2563eb;
+      color: white;
+      font-weight: 600;
+      padding: 0.8rem 2.2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.1s;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 20px -8px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn:hover {
+      background-color: #1d4ed8;
+      transform: translateY(-3px);
+    }
+
+    /* ────────────────────────────────────────────────
+       FIXED PROFILE PICTURE STYLING (THIS IS THE MAIN CHANGE)
+    ──────────────────────────────────────────────── */
+    .profile-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      margin: 0 auto;
+      aspect-ratio: 1 / 1;
+    }
+
+    .profile-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;              /* ← crops to fill circle nicely */
+      object-position: center;
+      border-radius: 50%;
+      border: 6px solid white;
+      box-shadow: 0 20px 35px rgba(0,0,0,0.12);
+      background: #eef2f6;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .profile-image:hover {
+      transform: scale(1.03);
+      box-shadow: 0 25px 45px rgba(37,99,235,0.2);
+    }
+
+    .upload-overlay {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      width: 54px;
+      height: 54px;
+      background: #2563eb;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+      transition: all 0.2s;
+      font-size: 1.4rem;
+    }
+
+    .upload-overlay:hover {
+      background: #1d4ed8;
+      transform: scale(1.1);
+    }
+
+    .profile-wrapper {
+      cursor: pointer;
+    }
+
+    .profile-hint {
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    /* section styling */
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 2.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 70px;
+      height: 4px;
+      background: #2563eb;
+      border-radius: 4px;
+    }
+
+    /* skills grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .skill-card {
+      background: white;
+      padding: 1.8rem 1.2rem;
+      border-radius: 24px;
+      box-shadow: 0 12px 22px -10px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      transition: all 0.25s;
+      border: 1px solid #f0f4f9;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 22px 30px -12px rgba(37, 99, 235, 0.15);
+      border-color: #bdd3ff;
+    }
+
+    .skill-card i {
+      font-size: 2.5rem;
+      color: #2563eb;
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .skill-level {
+      display: inline-block;
+      background: #e6f0ff;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #2563eb;
+      margin-top: 0.5rem;
+    }
+
+    /* education cards */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+
+    .edu-item {
+      background: white;
+      padding: 2rem 1.5rem;
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+      border-left: 6px solid #2563eb;
+      transition: 0.2s;
+    }
+
+    .edu-item i {
+      font-size: 2rem;
+      color: #2563eb;
+      margin-bottom: 1rem;
+    }
+
+    .edu-item h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #0f172a;
+    }
+
+    .edu-detail {
+      color: #374151;
+      font-size: 0.98rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .edu-detail i {
+      font-size: 0.85rem;
+      color: #4b5563;
+      margin-right: 6px;
+    }
+
+    .edu-gpa {
+      background: #f1f5f9;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      display: inline-block;
+      margin-top: 0.7rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    /* contact area */
+    .contact-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      background: white;
+      padding: 2.5rem;
+      border-radius: 32px;
+      box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.03);
+      margin-top: 1rem;
+    }
+
+    .contact-info {
+      flex: 1 1 280px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .contact-item i {
+      width: 40px;
+      height: 40px;
+      background: #eef2ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2563eb;
+      font-size: 1.2rem;
+    }
+
+    .contact-item a {
+      text-decoration: none;
+      color: #1f2937;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .contact-item a:hover {
+      color: #2563eb;
+      text-decoration: underline;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1.8rem;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: #f1f5f9;
+      border-radius: 50%;
+      color: #1e293b;
+      font-size: 1.4rem;
+      transition: all 0.2s;
+    }
+
+    .social-links a:hover {
+      background: #2563eb;
+      color: white;
+      transform: scale(1.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 0;
+      color: #6b7280;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 2rem;
+    }
+
+    /* responsive */
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .hero-description {
+        max-width: 100%;
+      }
+
+      .profile-wrapper {
+        max-width: 300px;
+      }
+
+      header {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      nav ul {
+        gap: 1.2rem;
+        padding: 0.5rem 0;
+      }
+
+      .section-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+      }
+
+      .section-title {
+        display: block;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- header -->
+    <header>
+      <div class="logo">Shishir<span> Acharya</span></div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="home" class="hero" style="padding-top: 1rem;">
+      <div class="hero-content">
+        <h1>Hi, It's <i>Shishir Acharya</i></h1>
+        <div class="hero-subtitle" style="color: #0c0216;"> I Am <b>BCA Student</b> & <b>Aspiring UI/UX Designer</b></div>
+        <p class="hero-description" style="color: #663366;">
+          I’m a BCA student passionate about technology and design. I hold a Diploma in Computer and have skills in Data
+          Analysis, with beginner experience in UI/UX design. I’m currently learning HTML, CSS, and UI/UX while
+          improving my development skills. My goal is to build meaningful digital products and grow as a tech
+          professional.
+        </p>
+        <a href="#contact" class="btn">Contact me</a>
+      </div>
+
+      <!-- FIXED PROFILE PICTURE AREA -->
+      <div class="profile-wrapper">
+        <img 
+          id="profilePic" 
+          src="Profile pic for potfolio.jpeg" 
+          alt="Shishir Acharya" 
+          class="profile-image"
+        >
+        <label for="fileInput" class="upload-overlay">
+          <i class="fas fa-camera"></i>
+        </label>
+        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+      </div>
+
+      <p class="profile-hint">Click the photo or camera icon to change your picture</p>
+    </section>
+
+    <!-- SKILLS section -->
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <i class="fab fa-html5"></i>
+          <h3>HTML</h3>
+          <span class="skill-level">Learning</span>
+        </div>
+        <div class="skill-card">
+          <i class="fab fa-css3-alt"></i>
+          <h3>CSS</h3>
+          <span class="skill-level">Learning</span>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-chart-line"></i>
+          <h3>Data Analysis</h3>
+          <span class="skill-level">Intermediate</span>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-paint-brush"></i>
+          <h3>UI/UX Design</h3>
+          <span class="skill-level">Beginner</span>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-desktop"></i>
+          <h3>Computer Fundamentals</h3>
+          <span class="skill-level">Strong base</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION section -->
+    <section id="education">
+      <h2 class="section-title">Education</h2>
+      <div class="edu-grid">
+        <div class="edu-item">
+          <i class="fas fa-diploma"></i>
+          <h3>Diploma in Computer</h3>
+          <div class="edu-detail"><i class="fas fa-building"></i> infonet Institute , Arghakhanchi</div>
+          <div class="edu-detail"><i class="fas fa-calendar"></i> Completed</div>
+          <span class="edu-gpa"><i class="fas fa-check-circle"></i> Diploma</span>
+        </div>
+        <div class="edu-item">
+          <i class="fas fa-school"></i>
+          <h3>SEE</h3>
+          <div class="edu-detail"><i class="fas fa-star"></i> GPA: 3.45</div>
+          <div class="edu-detail"><i class="fas fa-calendar-alt"></i> 2023 From Shree janajyoti secondary school Sa.na.pa.2,Arghakhanchi</div>
+          <span class="edu-gpa">3.45 GPA</span>
+        </div>
+        <div class="edu-item">
+          <i class="fas fa-graduation-cap"></i>
+          <h3>+2 · Management</h3>
+          <div class="edu-detail"><i class="fas fa-star"></i> GPA: 3.29</div>
+          <div class="edu-detail"><i class="fas fa-building"></i> Faculty of Management</div>
+          <span class="edu-gpa"> 3.29GPA</span>
+        </div>
+        <div class="edu-item">
+          <i class="fas fa-university"></i>
+          <h3>BCA (Bachelor of Computer Application)</h3>
+          <div class="edu-detail"><i class="fas fa-map-pin"></i> Butwal Kalika Campus</div>
+          <div class="edu-detail"><i class="fas fa-calendar"></i> 2025 – Present</div>
+          <span class="edu-gpa">Current · 1st semester</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT section -->
+    <section id="contact">
+      <h2 class="section-title" style="color: #545092;">CONTACT</h2>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-phone-alt"></i>
+            <a href="tel:+9779867894935">9867894935</a>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:shishiracharya150@gmail.com">shishiracharya150@gmail.com</a>
+          </div>
+          <div class="social-links">
+            <a href="https://www.facebook.com/share/1Af8E8hmuJ/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/shishiracharya07?igsh=MTlyZnd5NGNwbGZkcw==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@shishirvlog37" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+          <p style="margin-top: 1.8rem; color: #371e91; font-size: 0.9rem;">
+            <i class="fas fa-location-dot" style="color: #10a028;"></i> Butwal, Nepal
+          </p>
+        </div>
+        <div style="flex: 1 1 240px; background-color: #a20cf8; padding: 1.8rem; border-radius: 24px;">
+          <h3 style="font-size: 1.4rem; font-weight: 600; margin-bottom: 0.5rem;">Let's connect</h3>
+          <p style="color: #020f20;">Feel free to reach out via socials or email for collaborations, or just a friendly chat!</p>
+          <div style="margin-top: 1.5rem; display: flex; gap: 0.8rem; flex-wrap: wrap;">
+            <span style="background: #c1e6d3; padding: 0.4rem 1rem; border-radius: 40px; border:1px solid #d1d5db;"><i class="fab fa-whatsapp" style="color:#25D366;"></i> 9867894935</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p style="color: #0a0902;"> Thank You for Visiting My Portfolio! </p>
+      <p style="margin-top: 0.5rem; font-size: 0.8rem;"></p>
+    </footer>
+  </div>
+
+  <!-- JavaScript for profile picture preview -->
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const profilePic = document.getElementById('profilePic');
+
+    if (fileInput && profilePic) {
+      fileInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (!file) return;
+
+        if (!file.type.startsWith('image/')) {
+          alert("Please select an image file");
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          profilePic.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  </script>
+</body>
+</html>
