@@ -301,7 +301,170 @@
       color: var(--blue);
       margin-top: 0.5rem;
     }
+        <!-- ── Projects ── -->
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-card-header">
+            <div class="project-icon"><i class="fas fa-note-sticky"></i></div>
+            <div>
+              <h3>Hamro Notes</h3>
+              <span class="project-status">In Progress</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <p>
+            </p>
+              <span class="project-tag">Mobile App</span>
+              <span class="project-tag">Education</span>
+              <span class="project-tag">Firebase</span>
+              <span class="project-tag">Content Management</span>
+            </div>
+            <ul class="project-features">
+              <li><i class="fas fa-circle-check"></i> Organized study materials for BCA & CSIT entrance preparation</li>
+              <li><i class="fas fa-circle-check"></i> Backend-managed educational content, kept current and organized</li>
+              <li><i class="fas fa-circle-check"></i> Ongoing contributions to app improvement and user experience</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
+/* ── Projects ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+ 
+    .project-card {
+      background: var(--surface);
+      border-radius: 24px;
+      box-shadow: 0 12px 22px -10px var(--card-shadow);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: all 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 22px 30px -12px rgba(37,99,235,0.15);
+      border-color: var(--blue);
+    }
+ 
+    .project-card-header {
+      background: var(--blue-light);
+      padding: 2rem 1.5rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .project-icon {
+      width: 56px;
+      height: 56px;
+      min-width: 56px;
+      border-radius: 16px;
+      background: var(--blue);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+    .project-card-header h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--hero-h1);
+    }
+    .project-status {
+      display: inline-block;
+      margin-top: 0.3rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--blue);
+      background: var(--blue-badge);
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+    }
+ 
+    .project-card-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card-body p {
+      color: var(--text-soft);
+      font-size: 0.98rem;
+      margin-bottom: 1.2rem;
+    }
+ 
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .project-tag {
+      background: var(--edu-bg);
+      color: var(--text);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.3rem 0.9rem;
+      border-radius: 40px;
+    }
+ 
+    .project-features {
+      list-style: none;
+      margin-bottom: 1.2rem;
+    }
+    .project-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      margin-bottom: 0.5rem;
+    }
+    .project-features li i {
+      color: var(--blue);
+      margin-top: 4px;
+      font-size: 0.8rem;
+    }
+ 
+    .project-link {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--blue);
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .project-link:hover { gap: 0.8rem; }
+    /*------ Hamro Notes LOGO CSS */
+    .project-icon {
+    width: 84px;
+    height: 84px;
+    border-radius: 22px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.project-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
     /* ── Education ── */
     .edu-grid {
       display: grid;
@@ -460,6 +623,7 @@
           <li><a href="#home"><i class="fa-solid fa-house-user"></i> Home</a></li>
           <li><a href="#about"><i class="fa-solid fa-circle-info"></i> About</a></li>
           <li><a href="#skills"><i class="fa-brands fa-hotjar"></i> Skills</a></li>
+          <li><a href="#projects"><i class="fa-solid fa-diagram-project"></i> Projects</a></li>
           <li><a href="#education"><i class="fa-solid fa-graduation-cap"></i> Education</a></li>
           <li><a href="#contact"><i class="fa-solid fa-circle-user"></i> Contact</a></li>
 
@@ -510,7 +674,7 @@
         <div class="skill-card">
           <i class="fab fa-html5"></i>
           <h3>HTML</h3>
-          <span class="skill-level">Learning</span>
+         // <span class="skill-level">Learning</span>
         </div>
         <div class="skill-card">
           <i class="fab fa-css3-alt"></i>
@@ -533,7 +697,44 @@
           <span class="skill-level">Strong base</span>
         </div>
       </div>
-    </section>
+    <!-- ── Projects ── -->
+      <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+<div class="project-card">
+
+    <div class="project-card-header">
+        <div class="project-icon">
+            <img src="" alt="">
+        </div>
+
+        <div>
+            <h3>Hamro Notes & Hamro Sikshya</h3>
+            <span class="project-status">Live On Play Store And Web</span>
+        </div>
+    </div>
+
+    <div class="project-card-body">
+        <p>
+            Developed and maintained Hamro Notes and Hamro Sikshya, an educational mobile and web platform providing organized study materials, entrance-preparation resources, and accessible learning content for students. Managed and updated educational content through the backend while contributing to application development, content delivery, responsive design, and overall user experience.
+        </p>
+
+        <span class="project-tag">Mobile App</span>
+
+        
+        <span class="project-tag">Web Platform</span>
+        
+    </div>
+
+    <ul class="project-features">
+        <li><i class="fas fa-circle-check"></i> BCA & CSIT entrance preparation resources</li>
+        <li><i class="fas fa-circle-check"></i> Organized and categorized educational content</li>
+        <li><i class="fas fa-circle-check"></i> Backend-managed content and updates</li>
+        <li><i class="fas fa-circle-check"></i> Responsive and user-friendly learning experience</li>
+        <li><i class="fas fa-circle-check"></i> Continuous improvement of content delivery and UX</li>
+    </ul>
+
+</div>
 
     <!-- ── Education ── -->
     <section id="education">
