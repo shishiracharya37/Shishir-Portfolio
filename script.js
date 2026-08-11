@@ -4,6 +4,34 @@ if (year) {
   year.textContent = new Date().getFullYear();
 }
 
+// Mobile menu toggle
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const mainNav = document.querySelector('.main-nav');
+const mobileNavLinks = document.querySelectorAll('.main-nav a');
+
+if (mobileMenuToggle) {
+  mobileMenuToggle.addEventListener('click', () => {
+    const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+    mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+    mainNav.classList.toggle('active');
+  });
+
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      mainNav.classList.remove('active');
+    });
+  });
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.site-header')) {
+    mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+    mainNav?.classList.remove('active');
+  }
+});
+
 const revealItems = document.querySelectorAll('.reveal');
 
 if ('IntersectionObserver' in window) {
